@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;    
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: 400;
+}
+
+details,
+figcaption,
+figure,
+menu {
+    display: block;
+}
+
+ol,
+li {
+    list-style: none;
+}
+
+input,
+select,
+textarea {
+    outline: none;
+}
+
+img {
+    display: block;
+    border: 0 none;
+}
+
+i,
+em {
+    font-style: normal;
+}
+
+b {
+    font-weight: 400;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+q {
+    quotes: none
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    font-family: "微软雅黑";
+}
+
+

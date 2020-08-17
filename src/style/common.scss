@@ -1,0 +1,53 @@
+body {
+    background: #f5f5f5;    
+}
+.nav {
+    padding: 20px 0px;
+    // height: 64px;
+    // line-height: 64px;
+    // background: #FF5722;
+    box-shadow: 0 2px 5px rgba(0,0,0,.26);
+    border-bottom: 1px solid #dcdee3;
+    h1 {        
+        margin-left: 10px;        
+        // font-size: 20px;
+        // font-weight: bold;
+        a {            
+            color: #FFF;
+        }        
+    }
+}
+
+
+/* 清除浮动 */
+
+.clearfix:after {
+    content: '\0020';
+    display: block;
+    height: 0;
+    clear: both
+}
+
+.clearfix {
+    *zoom: 1
+}
+
+
+/* 省略号样式 */
+
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+/* 禁止选择  */
+
+.unselected {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}

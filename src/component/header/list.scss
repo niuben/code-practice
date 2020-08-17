@@ -1,0 +1,52 @@
+.list {
+            
+    margin: 0 auto;
+    margin-top: 20px;
+    li {
+
+        float: left;
+        margin-left: 0.5%;
+        margin-right: 0.5%;
+        margin-bottom: 15px;
+        background: #fAfAfA;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+
+        width: 15%;
+        margin-left: 20px;    
+        padding: 20px 0px;
+        height: auto;
+        text-align: center;
+
+        .cover {
+            height: 140px;
+            overflow: hidden;
+        }
+        
+        .content {
+            padding: 10px 10px 0px;
+            text-align: left;             
+            .infor {
+                margin-top: 5px; 
+                font-size: 14px;
+            }
+            .title {                
+                color: #000;
+                font-size: 16px;
+            }
+            .title:hover{
+                text-decoration: underline;
+            }
+        }
+        img {            
+            width: 100%;
+            transition: all 0.8s ease 0s;
+        }
+    }
+    li:hover{
+        box-shadow: 0 2px 3px rgba(0,0,0,0.38);                
+    }
+    img:hover {
+        transform: scale(1.5);
+    }
+}
