@@ -43,7 +43,7 @@
             transition: all 0.8s ease 0s;
         }
     }
-    li:hover{
+    li:hover,li.active {
         box-shadow: 0 2px 3px rgba(0,0,0,0.38);                
     }
     img:hover {

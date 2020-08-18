@@ -1,6 +1,18 @@
+/*
+*  公共样式
+*/ 
+.success {
+
+}
+.fail {
+
+}
+
+
 body {
     background: #f5f5f5;    
 }
+
 .nav {
     padding: 20px 0px;
     // height: 64px;
@@ -20,7 +32,6 @@ body {
 
 
 /* 清除浮动 */
-
 .clearfix:after {
     content: '\0020';
     display: block;
@@ -34,7 +45,6 @@ body {
 
 
 /* 省略号样式 */
-
 .ellipsis {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -43,7 +53,6 @@ body {
 
 
 /* 禁止选择  */
-
 .unselected {
     -webkit-user-select: none;
     -khtml-user-select: none;

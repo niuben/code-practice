@@ -4,6 +4,7 @@ import "./style/common.scss";
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import App from './App';
 import Case from "./component/case/index";
 import Header from "./component/header/index";
@@ -12,12 +13,28 @@ import Edit from "./component/edit/index";
 
 import * as serviceWorker from './serviceWorker';
 
+import {HEADER, HEADER_CONTEXT} from "./model/index";
+
+console.log("HeaderModel", HEADER_CONTEXT);
+
 ReactDOM.render(
   <React.StrictMode>    
-    <Header />
-    <Case />
-    <MarkDown />
-    <Edit />
+    <HEADER_CONTEXT.Provider value={HEADER}>
+      <Header onChange={()=>{
+          console.log("null");
+      }}/>
+      <p>HEADER: {JSON.stringify(HEADER)}</p>
+      <div class="content">      
+        <div class="content-left">
+          <div class="markdown markdown-body" id="markdown">
+            <MarkDown  />
+          </div>
+        </div>
+        <div class="content-right">
+          <Edit />
+        </div>
+    </div>            
+    </HEADER_CONTEXT.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
