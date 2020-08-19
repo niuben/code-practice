@@ -7,7 +7,9 @@ import createElementMD from "../../model/md/createElement.md";
 
 
 export default function MarkDown(){    
-    return <div className="markdown-body">
-        <div dangerouslySetInnerHTML={{__html: createElementMD}}></div>
+    return <div class="markdown markdown-body" id="markdown">
+        <div className="markdown-body">
+            <div dangerouslySetInnerHTML={{__html: createElementMD}}></div>
+        </div>
     </div>
 }

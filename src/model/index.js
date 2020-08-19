@@ -31,10 +31,12 @@ export var HEADER = [{
     index: 0,
     title: "总汇",
     actived: true
-
 },{
     index: 0,
-    title: "createElement",    
+    title: "createElement",
+    codes: [{
+        value: "",
+    }]
 }];
 
 export const HEADER_CONTEXT = React.createContext(HEADER);

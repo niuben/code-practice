@@ -1,0 +1,35 @@
+/* 左右布局 */
+.content {
+    width: auto;
+    height: 75%;
+}
+
+.content-left, .content-right {
+    float: left;
+    height: 100%;
+    background: #FFF;
+}
+
+.content-left {
+    width: 40%;
+}
+
+.content-right {
+    width: 60%;
+}
+
+.content-right>div {
+    margin-left: 30px;
+    height: 100%;
+}
+
+#markdown {
+    width: 100%;
+    height: 800px;
+    overflow: scroll;
+}
+
+.run {
+    margin-top: 20px;
+}
+

@@ -13,6 +13,6 @@ import "ace-builds/src-noconflict/theme-github";
 */ 
 export default function Edit(){
     return <div className="codeList">          
-        <AceEditor mode="java" theme="github"/>
+        <AceEditor mode="java" theme="github" value={`123`} />
     </div>
 }
