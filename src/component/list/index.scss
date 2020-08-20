@@ -1,0 +1,35 @@
+
+.steps {            
+    margin: 0 auto;
+    margin-top: 20px;
+    li {
+        
+        margin: 0 auto;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+        background: #fAfAfA;
+        width: 80%;        
+        padding: 20px 0px;
+        height: auto;
+        text-align: center;        
+        
+        .index, .title {
+            float: left;
+            margin-left: 20px;
+            height: 30px;
+            line-height: 30px;
+        }
+        button {
+            float: right;
+            margin-right: 20px;
+        }
+        
+    }
+    li:hover,li.active {
+        box-shadow: 0 2px 3px rgba(0,0,0,0.38);                
+    }
+    img:hover {
+        transform: scale(1.5);
+    }
+}

@@ -1,4 +1,5 @@
 import React  from "react";
+
 /*
 * 创建公共数据，用于数据展示（v1.0暂时不需要先写固定）;
 */
@@ -7,6 +8,7 @@ export const Data = {
     steps: [{
         id: 1,
         title: "createTextElement",
+        markdown: require("./md/createTextNode.md"),
         codes: `
 /*
 * 创建createTextElement方法
@@ -17,8 +19,7 @@ export const Data = {
 function createTextElement(type, props, children){
     /* 填写代码 */ 
 }
-
-        `,
+`,
         cases: [{
             fn: `createElement("hi", null, "hi react!")`,
             value: {
@@ -36,6 +37,7 @@ function createTextElement(type, props, children){
     }, {
             id: 2,
             title: "createElement",
+            markdown: require("./md/createElement.md"),
             codes: `
 /*
 * 创建createElement方法
@@ -46,7 +48,7 @@ function createTextElement(type, props, children){
 function createElement(type, props, children){
     /* 填写代码 */ 
 }            
-        `,
+`,
             cases: [{
                 fn: `createElement("hi", null, "hi react!")`,
                 value: {
@@ -74,6 +76,7 @@ export const CODE = [{
     `
 }];
 
+
 /*
 * 创建单元测试
 */ 
@@ -81,6 +84,7 @@ export const CASE = [{
     index: 1,
     cases: []  
 }]
+
 
 /*
 * 

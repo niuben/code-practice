@@ -12,11 +12,10 @@ import MarkDown from "./component/markdown/index";
 import Edit from "./component/edit/index";
 import Run from "./component/run/index";
 import Case from "./component/case/index";
+import List from "./component/list/index";
 
 import * as serviceWorker from './serviceWorker';
 import {HEADER, HEADER_CONTEXT, Data} from "./model/index";
-
-
 
 /*
 * 问题1: 各个组件如何获取数据？
@@ -27,6 +26,10 @@ import {HEADER, HEADER_CONTEXT, Data} from "./model/index";
 * 2. 原因是函数式组件没有重新运行;
 */ 
 console.log("HeaderModel", HEADER_CONTEXT);
+var MyWorker = new Worker("./worker.js");
+MyWorker.onmessage = function(e){
+  console.log(e); 
+}
 
 class Index extends Component {
   constructor(props) {
@@ -34,36 +37,54 @@ class Index extends Component {
     this.state = {
       HEADER: HEADER,
       activeIndex: 0     
-    }    
+    } 
+      
   }
   render(){
     var {activeIndex} = this.state;
-    var stepObj = Data["steps"][activeIndex];
+    var stepObj = Data["steps"][activeIndex - 1];
 
     return <HEADER_CONTEXT.Provider value={this.state.HEADER}>
-      <Header data={this.state.HEADER} onChange={(activeIndex)=>{                                    
+      <Header data={this.state.HEADER} onChange={()=>{                                    
+        
         //修改选中状态
-        var currentHeader = this.state.HEADER;
-        currentHeader = currentHeader.map((obj, index)=>{
-          delete obj.actived;
-          if(activeIndex == index) obj.actived = true;
-          return obj;
-        });        
+        // var currentHeader = this.state.HEADER;
+        // currentHeader = currentHeader.map((obj, index)=>{
+        //   delete obj.actived;
+        //   if(activeIndex == index) obj.actived = true;
+        //   return obj;
+        // });
         this.setState({
-          HEADER: currentHeader,
-          activeIndex: activeIndex
+          activeIndex: 0
         });
 
-      }} />      
-      <div class="content">      
-        <div class="content-left">   
-          <MarkDown />          
-        </div>
-        <div class="content-right">
-          <Edit codes={typeof stepObj == "object" ?  stepObj.codes : "no code"} />
-          <Run />
-          <Case />          
-        </div>
+      }} />
+      {/* 整体布局 */}
+      <div class="content">
+        {
+          activeIndex == 0 ? <List data={Data.steps} onChange={(index)=>{
+            this.setState({
+              activeIndex: index
+            });
+          }}/> : <React.Fragment>          
+            <div class="content-left">   
+              {/* 文档显示 */}
+              <MarkDown html={ typeof stepObj == "object" ? stepObj.markdown : "" } />          
+            </div>
+            <div class="content-right">
+              <Edit codes={typeof stepObj == "object" ?  stepObj.codes : "no code"} onBlur={(content)=>{
+                stepObj.codes = content;
+              }} />
+              <p className="clearfix">
+                <button className="btn" style={{"float": "right"}} onClick={()=>{
+                  // console.log("codes", stepObj.codes);
+                  MyWorker.postMessage([stepObj.codes, stepObj.cases]);
+                }}>run</button>
+              </p>
+              <Case />
+            </div>
+          </React.Fragment>
+        }
     </div>
     </HEADER_CONTEXT.Provider>
   }

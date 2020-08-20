@@ -13,6 +13,8 @@ import "ace-builds/src-noconflict/theme-github";
 */ 
 export default function Edit(props){
     return <div className="codeList">          
-        <AceEditor mode="java" theme="github" value={props.codes} />
+        <AceEditor mode="java" theme="github" value={props.codes}  onBlur={(e, edit)=>{
+            props.onChange && props.onChange(edit.getValue());
+        }} />
     </div>
 }

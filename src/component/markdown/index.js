@@ -1,15 +1,11 @@
 import "./github-theme.scss";
 
 import React from "react";
-import marked from "marked";
 
-import createElementMD from "../../model/md/createElement.md";
-
-
-export default function MarkDown(){    
+export default function MarkDown(props){    
     return <div class="markdown markdown-body" id="markdown">
         <div className="markdown-body">
-            <div dangerouslySetInnerHTML={{__html: createElementMD}}></div>
+            <div dangerouslySetInnerHTML={{__html: props.html}}></div>
         </div>
     </div>
 }
