@@ -3,13 +3,13 @@ import React from "react";
 import "./index.scss";
 
 export default function List(props){
-    return <ul class="steps">                        
+    return <ul className="steps">                        
         {
             props.data.map((data, index)=>{                
-                return (<li class="clearfix" key={index}>
-                    <span class="index">{data.id}.</span>
-                    <span class="title">{data.title}</span>
-                    <button class="btn btn-small" onClick={()=>{                        
+                return (<li className="clearfix" key={index}>
+                    <span className="index">{data.id}.</span>
+                    <span className="title">{data.title}</span>
+                    <button className="btn btn-small" onClick={()=>{                        
                         props.onChange && props.onChange(data.id);
                     }}>练习</button>
                 </li>)

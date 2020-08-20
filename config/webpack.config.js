@@ -329,6 +329,12 @@ module.exports = function(webpackEnv) {
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
 
+        {
+          test: /\.worker\.js$/,
+          use: {
+            loader: "worker-loader"
+          }
+        },
         // First, run the linter.
         // It's important to do this before Babel processes the JS.
         {
@@ -529,7 +535,8 @@ module.exports = function(webpackEnv) {
               options: {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
-            }
+            },
+            
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.            
           ],

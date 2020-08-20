@@ -14,7 +14,9 @@ import Run from "./component/run/index";
 import Case from "./component/case/index";
 import List from "./component/list/index";
 
-import * as serviceWorker from './serviceWorker';
+import Worker from "./model/run.worker.js";
+
+// import * as serviceWorker from './serviceWorker';
 import {HEADER, HEADER_CONTEXT, Data} from "./model/index";
 
 /*
@@ -26,8 +28,9 @@ import {HEADER, HEADER_CONTEXT, Data} from "./model/index";
 * 2. 原因是函数式组件没有重新运行;
 */ 
 console.log("HeaderModel", HEADER_CONTEXT);
-var MyWorker = new Worker("./worker.js");
+var MyWorker = new Worker();
 MyWorker.onmessage = function(e){
+  debugger;
   console.log(e); 
 }
 
@@ -76,8 +79,9 @@ class Index extends Component {
                 stepObj.codes = content;
               }} />
               <p className="clearfix">
-                <button className="btn" style={{"float": "right"}} onClick={()=>{
+                <button className="btn" style={{"float": "right"}} onClick={(e)=>{
                   // console.log("codes", stepObj.codes);
+                  debugger;
                   MyWorker.postMessage([stepObj.codes, stepObj.cases]);
                 }}>run</button>
               </p>
@@ -98,4 +102,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// serviceWorker.unregister();

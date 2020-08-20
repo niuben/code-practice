@@ -21,7 +21,7 @@ function createTextElement(type, props, children){
 }
 `,
         cases: [{
-            fn: `createElement("hi", null, "hi react!")`,
+            fn: `createTextElement("hi", null, "hi react!")`,
             value: {
                 type: "hi",
                 props: {
