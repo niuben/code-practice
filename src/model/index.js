@@ -2,8 +2,66 @@ import React  from "react";
 /*
 * 创建公共数据，用于数据展示（v1.0暂时不需要先写固定）;
 */
-export const data = {
-  
+export const Data = {
+    title: "React Render实现",
+    steps: [{
+        id: 1,
+        title: "createTextElement",
+        codes: `
+/*
+* 创建createTextElement方法
+* @type: 标签类型;
+* @props: 标签属性;
+* @children: 子标签;
+*/ 
+function createTextElement(type, props, children){
+    /* 填写代码 */ 
+}
+
+        `,
+        cases: [{
+            fn: `createElement("hi", null, "hi react!")`,
+            value: {
+                type: "hi",
+                props: {
+                    children:[{
+                        type: "TEXT",
+                        props: {
+                            nodeValue: "hi react"
+                        }
+                    }]
+                }
+            }
+        }]
+    }, {
+            id: 2,
+            title: "createElement",
+            codes: `
+/*
+* 创建createElement方法
+* @type: 标签类型;
+* @props: 标签属性;
+* @children: 子标签;
+*/ 
+function createElement(type, props, children){
+    /* 填写代码 */ 
+}            
+        `,
+            cases: [{
+                fn: `createElement("hi", null, "hi react!")`,
+                value: {
+                    type: "hi",
+                    props: {
+                        children: [{
+                            type: "TEXT",
+                            props: {
+                                nodeValue: "hi react"
+                            }
+                        }]
+                    }
+                }
+            }]
+        }]
 }  
 
 /*

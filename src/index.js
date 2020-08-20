@@ -7,13 +7,14 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
-import Case from "./component/case/index";
 import Header from "./component/header/index";
 import MarkDown from "./component/markdown/index";
 import Edit from "./component/edit/index";
+import Run from "./component/run/index";
+import Case from "./component/case/index";
 
 import * as serviceWorker from './serviceWorker';
-import {HEADER, HEADER_CONTEXT} from "./model/index";
+import {HEADER, HEADER_CONTEXT, Data} from "./model/index";
 
 
 
@@ -31,10 +32,14 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      HEADER: HEADER      
+      HEADER: HEADER,
+      activeIndex: 0     
     }    
   }
   render(){
+    var {activeIndex} = this.state;
+    var stepObj = Data["steps"][activeIndex];
+
     return <HEADER_CONTEXT.Provider value={this.state.HEADER}>
       <Header data={this.state.HEADER} onChange={(activeIndex)=>{                                    
         //修改选中状态
@@ -45,7 +50,8 @@ class Index extends Component {
           return obj;
         });        
         this.setState({
-          HEADER: currentHeader
+          HEADER: currentHeader,
+          activeIndex: activeIndex
         });
 
       }} />      
@@ -54,7 +60,9 @@ class Index extends Component {
           <MarkDown />          
         </div>
         <div class="content-right">
-          <Edit />
+          <Edit codes={typeof stepObj == "object" ?  stepObj.codes : "no code"} />
+          <Run />
+          <Case />          
         </div>
     </div>
     </HEADER_CONTEXT.Provider>

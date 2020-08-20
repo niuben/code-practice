@@ -11,8 +11,8 @@ import "ace-builds/src-noconflict/theme-github";
 * 2. 保存代码内容; 将代码传递给公共组件;
 *   
 */ 
-export default function Edit(){
+export default function Edit(props){
     return <div className="codeList">          
-        <AceEditor mode="java" theme="github" value={`123`} />
+        <AceEditor mode="java" theme="github" value={props.codes} />
     </div>
 }
