@@ -11,7 +11,7 @@ import Header from "./component/header/index";
 import MarkDown from "./component/markdown/index";
 import Edit from "./component/edit/index";
 import Run from "./component/run/index";
-import Case from "./component/case/index";
+import UnitTest from "./component/unittest/index";
 import List from "./component/list/index";
 
 import Worker from "./model/run.worker.js";
@@ -27,21 +27,32 @@ import {HEADER, HEADER_CONTEXT, Data} from "./model/index";
 * 1. 查看组件Provider方式，默认当Provider发生变化时子组件都会被重新渲染;
 * 2. 原因是函数式组件没有重新运行;
 */ 
-console.log("HeaderModel", HEADER_CONTEXT);
-var MyWorker = new Worker();
-MyWorker.onmessage = function(e){
-  debugger;
-  console.log(e); 
-}
+
 
 class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      activeIndex: 1,
       HEADER: HEADER,
-      activeIndex: 0     
+      UnitTest: []
     } 
-      
+        
+    /*
+    * 创建一个Worker对象
+    */
+    this.MyWorker = new Worker();
+    var that = this;
+    this.MyWorker.onmessage = function(e){      
+      that.state.UnitTest.push(e.data);
+      that.forceUpdate();
+    }
+
+    /*
+    *
+    */ 
+
+
   }
   render(){
     var {activeIndex} = this.state;
@@ -79,13 +90,16 @@ class Index extends Component {
                 stepObj.codes = content;
               }} />
               <p className="clearfix">
-                <button className="btn" style={{"float": "right"}} onClick={(e)=>{
-                  // console.log("codes", stepObj.codes);
-                  debugger;
-                  MyWorker.postMessage([stepObj.codes, stepObj.cases]);
+                <button className="btn" style={{"float": "right", "margin-top": "15px"}} onClick={(e)=>{
+                  //发送单个测试用例                      
+                  this.state.UnitTest = [];
+                  stepObj.cases.map((obj, index)=>{
+                    console.log(obj, index);
+                    this.MyWorker.postMessage([index, stepObj.codes, obj.fn, obj.value]);
+                  })
                 }}>run</button>
               </p>
-              <Case />
+              <UnitTest data={this.state.UnitTest}/>
             </div>
           </React.Fragment>
         }

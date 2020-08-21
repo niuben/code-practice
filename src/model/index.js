@@ -18,9 +18,25 @@ export const Data = {
 */ 
 function createTextElement(type, props, children){
     /* 填写代码 */ 
+    return {
+        obj: 1
+    }
 }
 `,
         cases: [{
+            fn: `createTextElement("hi", null, "hi react!")`,
+            value: {
+                type: "hi",
+                props: {
+                    children:[{
+                        type: "TEXT",
+                        props: {
+                            nodeValue: "hi react"
+                        }
+                    }]
+                }
+            }
+        },{
             fn: `createTextElement("hi", null, "hi react!")`,
             value: {
                 type: "hi",
@@ -60,7 +76,8 @@ function createElement(type, props, children){
                                 nodeValue: "hi react"
                             }
                         }]
-                    }
+                    },
+                    
                 }
             }]
         }]

@@ -5,7 +5,7 @@ import React from "react";
 export default function Header(props){
 
   return <div className="header">    
-    <div className="nav">
+    <div className="nav shadow">
       <h1>React源码学习-Fiber Tree <button className="btn btn-small" onClick={()=>{
         props.onChange && props.onChange(0);
       }}>返回列表</button></h1>

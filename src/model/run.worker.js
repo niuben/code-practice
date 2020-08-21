@@ -1,28 +1,40 @@
 onmessage = function(e){
-    var codes = e.data[0];
-    var cases = e.data[1];
-    // 执行函数
-    try{
-        eval(codes);
+    
+    /*
+    * 执行每个单元测试。当index等于0时,先运行code方式
+    */ 
+    var index = e.data[0];
+    var code = e.data[1];
+    var fn = e.data[2];
+    var correctValue = e.data[3];
         
-    }catch(e){
-        postMessage("执行错误");    
-    }
+    var getStatus = createStatus(index, fn, correctValue);
     
-    cases.map((obj, index)=>{
+    // 执行函数
+    // if(index == 0){
         try{
-            var result = eval(obj.fn);
-            if(result != obj.value){
-                postMessage(["返回值不一致", result]);
-            }
+            eval(code);
         }catch(e){
-            postMessage(["执行错误", e]);
+            postMessage(getStatus("error", e));    
         }
-    });
-    // cases.map((case, index)=>{
-    
+    // }            
+    try{
+        var result = eval(fn);        
+        postMessage(getStatus( result != correctValue ? "unequal" : "equal", result));        
+    }catch(e){
+        postMessage(getStatus("error", e));
+    }       
+}
 
-    // });
-    
-       
+// 
+function createStatus(index, fn, correctValue){
+    return function(status, value){
+        return {
+            index: index,
+            fn: fn,
+            correctValue: correctValue,
+            status: status, //equal, error, unequal
+            value: value
+        }
+    }
 }

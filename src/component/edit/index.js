@@ -12,9 +12,9 @@ import "ace-builds/src-noconflict/theme-github";
 *   
 */ 
 export default function Edit(props){
-    return <div className="codeList">          
-        <AceEditor mode="java" theme="github" value={props.codes}  onBlur={(e, edit)=>{
-            props.onChange && props.onChange(edit.getValue());
+    return <div className="edit shadow">          
+        <AceEditor style={{height: "100%"}} mode="java" theme="github" value={props.codes} onBlur={(e, edit)=>{
+            props.onBlur && props.onBlur(edit.getValue());
         }} />
     </div>
 }
