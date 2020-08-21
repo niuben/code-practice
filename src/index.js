@@ -59,7 +59,7 @@ class Index extends Component {
     var stepObj = Data["steps"][activeIndex - 1];
 
     return <HEADER_CONTEXT.Provider value={this.state.HEADER}>
-      <Header data={this.state.HEADER} onChange={()=>{                                    
+      <Header data={this.state.HEADER} index={activeIndex} onChange={()=>{                                    
         
         //修改选中状态
         // var currentHeader = this.state.HEADER;
