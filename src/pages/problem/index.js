@@ -6,7 +6,7 @@ import {get as getUrl} from "pure-funs/lib/url";
 import Header from "../../component/header/index";
 import MarkDown from "../../component/markdown/index";
 import Edit from "../../component/edit/index";
-import Run from "../../component/run/index";
+
 import UnitTest from "../../component/unittest/index";
 
 import Worker from "../../model/run.worker.js";
@@ -42,6 +42,7 @@ export default class Problem extends Component {
         this.MyWorker.onmessage = function (e) {
             that.state.UnitTest.push(e.data);
             that.forceUpdate();
+            document.querySelector(".content-right").scrollTop = window.innerHeight;
         }
 
         /*

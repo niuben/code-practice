@@ -13,11 +13,18 @@ export default function UnitTest(props){
 
     return <div className="markdown markdown-body">
         {/* <h2 className="successStatus">测试通过</h2> */}
+        
+        {
+            props.data.map((unit, index) => {
+                return <a href={"#case" + ( index + 1)}>case{index + 1}</a>
+            })
+        }
+
         <div className="cases">
             {
                 props.data.map((unit, index)=>{
                     return <div className="case" key={index}>
-                        <h3 className={unit.status == "equal" ? "successStatus" : "errorStatus"}>case{unit.index + 1}: {UNIT_TEST_CONFIG[unit.status]}</h3>                        
+                        <h3 id={"case" + (index + 1)} className={unit.status == "equal" ? "successStatus" : "errorStatus"}>case{unit.index + 1}: {UNIT_TEST_CONFIG[unit.status]}</h3>                        
                         <p><strong>执行: </strong></p>
                         <pre>
                             <code className="language-js">

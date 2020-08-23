@@ -9,12 +9,15 @@ html,body,#root {
     height: 50px;
     top: 0px;
     left: 0px;
+    z-index: 100;
+    background-color: #FFF;
+    
 }
 
 /* 左右布局 */
 .content, .home {
     width: auto;
-    margin-top: 55px;
+    padding-top: 55px;
     height: 100%;    
 }
 
