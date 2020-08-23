@@ -10,7 +10,7 @@ export default function List(props){
                     <span className="index">{data.id}.</span>
                     <span className="title">{data.title}</span>
                     <button className="btn btn-small" onClick={()=>{                        
-                        props.onChange && props.onChange(data.id);
+                        window.location.href = "/problem?id=" + data.id;
                     }}>练习</button>
                 </li>)
             })

@@ -6,10 +6,11 @@ export default function Header(props){
 
   return <div className="header">    
     <div className="nav shadow">
-      <h1>React源码学习-Fiber Tree {
-          props.index != 0 ?  <button className="btn btn-small" style={{"margin-left": "20px"}} onClick={()=>{
-              props.onChange && props.onChange(0);
-            }}>返回列表</button> : null
+      <h1>React源码学习-Fiber Tree 
+        {
+          props.path == "home" ? null : <button  className="btn btn-small" style={{ "margin-left": "20px" }} onClick={()=>{
+            window.location.href = "/";
+          }}>返回列表</button> 
         }
       </h1>
       

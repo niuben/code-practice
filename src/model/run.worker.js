@@ -1,5 +1,4 @@
-onmessage = function(e){
-    
+onmessage = function(e){    
     /*
     * 执行每个单元测试。当index等于0时,先运行code方式
     */ 
@@ -26,7 +25,7 @@ onmessage = function(e){
     }       
 }
 
-// 
+// 创建一个
 function createStatus(index, fn, correctValue){
     return function(status, value){
         return {
