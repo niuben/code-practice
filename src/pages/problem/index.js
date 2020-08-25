@@ -31,7 +31,7 @@ export default class Problem extends Component {
         this.state = {
             id: getUrl("id"),
             HEADER: HEADER,
-            UnitTest: []
+            UnitTest: [],
         };
 
         /*
@@ -40,20 +40,41 @@ export default class Problem extends Component {
         this.MyWorker = new Worker();
         var that = this;
         this.MyWorker.onmessage = function (e) {
+            
             that.state.UnitTest.push(e.data);
+            
+            document.querySelector(".content-right").scrollTop = window.innerHeight - 50;
+
+            var stepObj = that.getStep();            
+            if(e.data.status != "equal"){
+                stepObj.status = "error";
+            }
+
+            //当测试用例已经完成，修改提示状态
+            if(that.state.UnitTest.length == stepObj.cases.length){
+                that.state.UnitTestStatus = "end";
+                that.forceUpdate();                
+
+                // 之前case都通过测试，则stepObj.status则是undefined，那么则给整个函数设置一个正确的状态;
+                if(stepObj.status == undefined){
+                    stepObj.status = "success";
+                }
+            }
+
             that.forceUpdate();
-            document.querySelector(".content-right").scrollTop = window.innerHeight;
         }
 
         /*
         *
         */
-
-
     }
-    render() {
+    getStep(){
         var { id } = this.state;
         var stepObj = Data["steps"][id - 1];
+        return stepObj;
+    }
+    render() {
+        var stepObj = this.getStep();
         return (
             <React.Fragment>
                 <Header data={this.state.HEADER}/>
@@ -68,16 +89,32 @@ export default class Problem extends Component {
                             stepObj.codes = content;
                         }} />
                         <p className="clearfix">
-                            <button className="btn" style={{ "float": "right", "margin-top": "15px" }} onClick={(e) => {
-                                //发送单个测试用例                      
+                            <button className="btn" style={{ "float": "left", "margin-top": "15px", "margin-left": "0px",}} onClick={(e) => {
+                                
+                                //清空测试用例;                      
                                 this.state.UnitTest = [];
-                                stepObj.cases.map((obj, index) => {
-                                    console.log(obj, index);
+                                this.state.UnitTestStatus = "run";
+                                delete stepObj.status;
+
+                                this.forceUpdate();
+
+                                var index = 0;
+                                // 给每个用例增加延迟效果                                
+                                this.handle = setInterval(()=>{
+                                    var obj = stepObj.cases[index];
                                     this.MyWorker.postMessage([index, stepObj.codes, obj.fn, obj.value]);
-                                })
-                            }}>run</button>
+                                    if(++index >= stepObj.cases.length){
+                                        clearInterval(this.handle);
+                                    }
+                                }, 2000);
+
+                                // stepObj.cases.map((obj, index) => {
+                                //     console.log(obj, index);
+                                //     this.MyWorker.postMessage([index, stepObj.codes, obj.fn, obj.value]);
+                                // });
+                            }}>执行代码</button>
                         </p>
-                        <UnitTest data={this.state.UnitTest} />
+                        <UnitTest status={this.state.UnitTestStatus}  data={this.state.UnitTest} />
                     </div>                
                 </div>
             </React.Fragment>)        

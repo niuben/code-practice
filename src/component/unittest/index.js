@@ -12,7 +12,11 @@ import "./index.scss";
 export default function UnitTest(props){
 
     return <div className="markdown markdown-body">
-        {/* <h2 className="successStatus">测试通过</h2> */}
+        <h2 className={props.status == "success" ? "successStatus" : ""}>
+            {
+                props.status == "run" ? "case" + (props.data.length + 1) + "正在执行...." : ""
+            }
+        </h2>
         
         {
             props.data.map((unit, index) => {

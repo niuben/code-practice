@@ -6,7 +6,7 @@ import React  from "react";
 export const Data = {
     title: "React Render实现",
     steps: [{
-        id: 1,
+        id: 1,            
         title: "createTextElement",
         markdown: require("./md/createTextNode.md"),
         codes: `
@@ -52,7 +52,7 @@ function createTextElement(type, props, children){
         }]
     }, {
             id: 2,
-            title: "createElement",
+            title: "createElement",            
             markdown: require("./md/createElement.md"),
             codes: `
 /*

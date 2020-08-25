@@ -21,7 +21,8 @@ export default class Home extends Component {
             HEADER: HEADER
         }       
     }
-    render() {                
+    render() { 
+        console.log("Data", Data);
         return <div>
             <Header data={this.state.HEADER} path="home" />
             {/* 整体布局 */}

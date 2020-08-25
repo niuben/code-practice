@@ -55,7 +55,15 @@ body {
 .btn-small {
     height: 30px;
 }
-
+.btn-disable{
+    outline: none;
+    border: none;
+    background: #EEE;
+    cursor: auto;    
+    &:active{
+        border: none;
+    }
+}
 /* */
 .shadow{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);

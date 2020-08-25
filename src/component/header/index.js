@@ -8,12 +8,11 @@ export default function Header(props){
     <div className="nav shadow">
       <h1>React源码学习-Fiber Tree 
         {
-          props.path == "home" ? null : <button  className="btn btn-small" style={{ "margin-left": "20px" }} onClick={()=>{
+          props.path == "home" ? null : <button className="btn btn-small" style={{ "margin-left": "20px" }} onClick={()=>{
             window.location.href = "/";
           }}>返回列表</button> 
         }
-      </h1>
-      
+      </h1>      
     </div>
     {/* 
     <ul className="list clearfix">
