@@ -8,6 +8,7 @@ export const Data = {
     steps: [{
         id: 1,            
         title: "createTextElement",
+        status: "success",
         markdown: require("./md/createTextNode.md"),
         codes: `
 /*

@@ -5,10 +5,18 @@ import "./index.scss";
 function isPrevSuccess(data, currentIndex){
     
     //第一个默认成功
-    --currentIndex;    
-    if(currentIndex > 0) {
-        
+    var prevIndex = --currentIndex;
+    if(prevIndex < 0) {
+        return true;
     }
+
+    // 判断之前的列表是否success
+    if(typeof data[prevIndex] == "object" &&  data.case[prevIndex].status == "success" ){
+        return true;
+    }
+
+    return false;
+
 }
 
 export default function List(props){
@@ -18,8 +26,8 @@ export default function List(props){
                 return (<li className="clearfix" key={index}>
                     <span className="index">{data.id}.</span>
                     <span className="title">{data.title}</span>
-                    <button className={data.status == "lock" ? "btn btn-small btn-disable" : 'btn btn-small'} onClick={()=>{
-                        if(data.status != "lock"){
+                    <button className={isPrevSuccess(data, index) ? "btn btn-small" : 'btn btn-small btn-disable'} onClick={()=>{
+                        if(isPrevSuccess(data, index) == true){
                             window.location.href = "/problem?id=" + data.id;
                         }
                     }}>{
