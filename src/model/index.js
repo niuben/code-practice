@@ -3,14 +3,22 @@ import React  from "react";
 /*
 * 创建公共数据，用于数据展示（v1.0暂时不需要先写固定）;
 */
-export const Data = {
-    title: "React Render实现",
-    steps: [{
-        id: 1,            
-        title: "createTextElement",
-        status: "success",
-        markdown: require("./md/createTextNode.md"),
-        codes: `
+function getData(){
+
+    var data = localStorage.getItem("_DATA_");
+    if(data != undefined && typeof data == "string"){
+        return JSON.parse(data);
+    }
+
+
+    return {
+        title: "React Render实现",
+        steps: [{
+            id: 1,
+            title: "createTextElement",
+            // status: "success",
+            markdown: require("./md/createTextNode.md"),
+            codes: `
 /*
 * 创建createTextElement方法
 * @type: 标签类型;
@@ -24,36 +32,36 @@ function createTextElement(type, props, children){
     }
 }
 `,
-        cases: [{
-            fn: `createTextElement("hi", null, "hi react!")`,
-            value: {
-                type: "hi",
-                props: {
-                    children:[{
-                        type: "TEXT",
-                        props: {
-                            nodeValue: "hi react"
-                        }
-                    }]
+            cases: [{
+                fn: `createTextElement("hi", null, "hi react!")`,
+                value: {
+                    type: "hi",
+                    props: {
+                        children: [{
+                            type: "TEXT",
+                            props: {
+                                nodeValue: "hi react"
+                            }
+                        }]
+                    }
                 }
-            }
-        },{
-            fn: `createTextElement("hi", null, "hi react!")`,
-            value: {
-                type: "hi",
-                props: {
-                    children:[{
-                        type: "TEXT",
-                        props: {
-                            nodeValue: "hi react"
-                        }
-                    }]
+            }, {
+                fn: `createTextElement("hi", null, "hi react!")`,
+                value: {
+                    type: "hi",
+                    props: {
+                        children: [{
+                            type: "TEXT",
+                            props: {
+                                nodeValue: "hi react"
+                            }
+                        }]
+                    }
                 }
-            }
-        }]
-    }, {
+            }]
+        }, {
             id: 2,
-            title: "createElement",            
+            title: "createElement",
             markdown: require("./md/createElement.md"),
             codes: `
 /*
@@ -78,11 +86,14 @@ function createElement(type, props, children){
                             }
                         }]
                     },
-                    
+
                 }
             }]
         }]
-}  
+    }  
+}
+
+export const Data = getData();
 
 /*
 * 代码列表

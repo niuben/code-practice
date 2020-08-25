@@ -11,7 +11,7 @@ function isPrevSuccess(data, currentIndex){
     }
 
     // 判断之前的列表是否success
-    if(typeof data[prevIndex] == "object" &&  data.case[prevIndex].status == "success" ){
+    if(typeof data[prevIndex] == "object" &&  data[prevIndex].status == "success" ){
         return true;
     }
 
@@ -26,8 +26,8 @@ export default function List(props){
                 return (<li className="clearfix" key={index}>
                     <span className="index">{data.id}.</span>
                     <span className="title">{data.title}</span>
-                    <button className={isPrevSuccess(data, index) ? "btn btn-small" : 'btn btn-small btn-disable'} onClick={()=>{
-                        if(isPrevSuccess(data, index) == true){
+                    <button className={isPrevSuccess(props.data, index) ? "btn btn-small" : 'btn btn-small btn-disable'} onClick={()=>{
+                        if(isPrevSuccess(props.data, index) == true){
                             window.location.href = "/problem?id=" + data.id;
                         }
                     }}>{

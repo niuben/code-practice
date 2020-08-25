@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
-
 import {get as getUrl} from "pure-funs/lib/url";
+import {set as setCookie, get as getCookie} from "pure-funs/lib/cookie";
+
 
 import Header from "../../component/header/index";
 import MarkDown from "../../component/markdown/index";
@@ -64,19 +65,30 @@ export default class Problem extends Component {
             that.forceUpdate();
         }
 
+        // useBeforeunload(()=>{
+        //     console.log("page close");
+        // });
+
         /*
-        *
+        * 页面关闭时保存data数据
         */
+        window.onbeforeunload = function(){            
+            localStorage.setItem("_DATA_", JSON.stringify(Data));
+        }
+
     }
     getStep(){
         var { id } = this.state;
         var stepObj = Data["steps"][id - 1];
         return stepObj;
-    }
+    }    
     render() {
         var stepObj = this.getStep();
         return (
             <React.Fragment>
+                {/* <Beforeunload onBeforeunload={()=>{
+                    alert(123);
+                }} /> */}
                 <Header data={this.state.HEADER}/>
                 {/* 整体布局 */}
                 <div class="content">                
