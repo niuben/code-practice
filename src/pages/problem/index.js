@@ -41,9 +41,7 @@ export default class Problem extends Component {
         var that = this;
         this.MyWorker.onmessage = function (e) {
             
-            that.state.UnitTest.push(e.data);
-            
-            that.scrollTop(window.innerHeight - 50);
+            that.state.UnitTest.push(e.data);           
 
             var stepObj = that.getStep();            
             if(e.data.status != "equal"){
@@ -55,6 +53,8 @@ export default class Problem extends Component {
             that.state.UnitTestStatus = "end";
             that.forceUpdate();
 
+
+            that.scrollTop(window.innerHeight - 50);
             //当测试用例已经完成，修改提示状态
 
             //2020/8/26: 只测试单个用例;
@@ -114,8 +114,10 @@ export default class Problem extends Component {
                             stepObj.codes = content;
                         }} />
                         <p className="clearfix">
-                            <button className="btn" style={{ "float": "left", "marginTop": "15px", "marginLeft": "0px"}} onClick={(e) => {
+                            <button className={this.state.UnitTestStatus != "run" ? "btn" : "btn btn-disable"} style={{ "float": "right", "marginTop": "15px", "marginLeft": "0px"}} onClick={(e) => {
                                 
+                                if(this.state.UnitTestStatus == "run") return false;
+
                                 this.saveData();
 
                                 //清空测试用例;
@@ -141,8 +143,7 @@ export default class Problem extends Component {
                                     
                                     // if(++index >= stepObj.cases.length){
                                         //     clearInterval(this.handle);
-                                        // }
-                                        
+                                        // }                                        
                                 }, 2000);
                                 
 
@@ -150,9 +151,16 @@ export default class Problem extends Component {
                                 //     console.log(obj, index);
                                 //     this.MyWorker.postMessage([index, stepObj.codes, obj.fn, obj.value]);
                                 // });
-                            }}>执行代码</button>
+                            }}>
+                                {
+                                    this.state.UnitTestStatus != "run" ? "运行代码" : "运行中..."
+                                }
+                            </button>
                         </p>
                         <UnitTest status={this.state.UnitTestStatus}  data={this.state.UnitTest} />
+                        <div id="test">
+                            
+                        </div>
                     </div>                
                 </div>
             </React.Fragment>)        

@@ -17,7 +17,7 @@ export default function UnitTest(props){
             <h2 className="showStatus">
                 {
                     props.status == "upload" ? "代码上传中......" : 
-                    props.status == "run" ? "代码执行中......" :
+                    props.status == "run" ? "代码运行中......" :
                     ""
                 }
             </h2>
@@ -48,14 +48,18 @@ export default function UnitTest(props){
                         <p><strong>期望: </strong></p>
                         <pre>
                             <code className="language-js">
-                            {unit.correctValue == undefined ? "undefined" : typeof unit.correctValue == "object" ? JSON.stringify(unit.correctValue, null, 4) : unit.correctValue.toString()}
+                                {
+                                    unit.correctValue == undefined ? "undefined" : typeof unit.correctValue == "object" ? JSON.stringify(unit.correctValue, null, 4) : unit.correctValue.toString()
+                                }
                             </code>
                         </pre>
 
                         <p><strong>实际: </strong></p>
                         <pre>
                             <code className="language-js">
-                                {unit.value == undefined ? "undefined" : typeof unit.value == "object" ? JSON.stringify(unit.value, null, 4) : unit.value.toString()}
+                                {
+                                    unit.value == undefined ? "undefined" : typeof unit.value == "object" ? JSON.stringify(unit.value, null, 4) : unit.value.toString()
+                                }
                             </code>
                         </pre>
                     </div>

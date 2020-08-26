@@ -28,7 +28,7 @@ onmessage = function(e){
         postMessage(getStatus(isEqual(result, correctValue) ? "equal" : "unequal", result));
     }catch(e){
         console.log("catch2", e);
-        postMessage(getStatus("error", e));
+        postMessage(getStatus("error", "错误:" + e.message));
     }       
 }
 

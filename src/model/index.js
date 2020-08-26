@@ -17,12 +17,9 @@ function getData(){
             title: "createTextElement",
             // status: "success",
             markdown: require("./md/createTextElement.md"),
-            codes: `
-/*
+            codes: `/*
 * 创建createTextElement方法
-* @type: 标签类型;
-* @props: 标签属性;
-* @children: 子标签;
+* @type: 文本内容;
 */ 
 function createTextElement(text){
     /* 填写代码 */ 
@@ -45,34 +42,108 @@ function createTextElement(text){
             id: 2,
             title: "createElement",
             markdown: require("./md/createElement.md"),
-            codes: `
+            codes: `/*
+* 创建createTextElement方法
+* @type: 文本内容;
+*/             
+function createTextElement(text){    
+    return {
+        type: "TEXT_ELEMENT",
+        props: {
+            nodeValue: text,
+            children:[]
+        }
+    }
+}
+            
 /*
 * 创建createElement方法
 * @type: 标签类型;
 * @props: 标签属性;
 * @children: 子标签;
 */ 
-function createElement(type, props, children){
+function createElement(type, props, ...children){
     /* 填写代码 */ 
 }            
 `,
             cases: [{
-                fn: `createElement("hi", null, "hi react!")`,
+                fn: 'createElement("hi", null, "hi react!")',
                 value: {
-                    type: "hi",
-                    props: {
-                        children: [{
-                            type: "TEXT",
-                            props: {
-                                nodeValue: "hi react"
+                    "type": "hi",
+                    "props": {
+                        "children": [
+                            {
+                                "type": "TEXT_ELEMENT",
+                                "props": {
+                                    "nodeValue": "hi react!",
+                                    "children": []
+                                }
                             }
-                        }]
-                    },
-
+                        ]
+                    }
                 }
             }]
+        },{
+            id: 3, 
+            title: "render",
+            markdown: require("./md/createElement.md"),
+            codes: `/*
+    * 创建createTextElement方法
+    * @type: 文本内容;
+    */             
+    function createTextElement(text){
+    
+        /* 填写代码 */ 
+        return {
+            type: "TEXT_ELEMENT",
+            props: {
+                nodeValue: text,
+                children:[]
+            }
+        }
+    }
+                
+    /*
+    * 创建createElement方法
+    * @type: 标签类型;
+    * @props: 标签属性;
+    * @children: 子标签;
+    */ 
+    function createElement(type, props, ...children){
+        /* 填写代码 */
+        return {
+            type: type,
+            props: {
+                ...props,
+                children: children.map((child)=>{
+                    return typeof child == "object" 
+                            ? child 
+                            : createTextElement(child)
+                        
+                })
+            }
+        }
+    }
+    
+    /*
+    * @element: createElement创建的值;
+    * @container: 显示的容器;
+    */ 
+    function render(element, container){
+        /*编写代码*/  
+        console.log(container);
+    }
+    `,
+    cases: [{
+        fn: 'render(createElement("hi", null, "hi react!"), dom.window.document.getElementByID("root"))',
+        validation: function(){
+            
+        }
+    }]
+    
         }]
-    }  
+    }
+    
 }
 
 export const Data = getData();
