@@ -7,7 +7,6 @@ import {set as setCookie, get as getCookie} from "pure-funs/lib/cookie";
 import Header from "../../component/header/index";
 import MarkDown from "../../component/markdown/index";
 import Edit from "../../component/edit/index";
-
 import UnitTest from "../../component/unittest/index";
 
 import Worker from "../../model/run.worker.js";
@@ -44,25 +43,34 @@ export default class Problem extends Component {
             
             that.state.UnitTest.push(e.data);
             
-            document.querySelector(".content-right").scrollTop = window.innerHeight - 50;
+            that.scrollTop(window.innerHeight - 50);
 
             var stepObj = that.getStep();            
             if(e.data.status != "equal"){
-                stepObj.status = "error";
+                stepObj.status = "fail";
+            }else{
+                stepObj.status = "success";
             }
+
+            that.state.UnitTestStatus = "end";
+            that.forceUpdate();
 
             //当测试用例已经完成，修改提示状态
-            if(that.state.UnitTest.length == stepObj.cases.length){
-                that.state.UnitTestStatus = "end";
-                that.forceUpdate();                
 
-                // 之前case都通过测试，则stepObj.status则是undefined，那么则给整个函数设置一个正确的状态;
-                if(stepObj.status == undefined){
-                    stepObj.status = "success";
-                }
-            }
+            //2020/8/26: 只测试单个用例;
+            // if(that.state.UnitTest.length == stepObj.cases.length){
+            //     that.state.UnitTestStatus = "end";
+            //     that.forceUpdate();                
+
+            //     // 之前case都通过测试，则stepObj.status则是undefined，那么则给整个函数设置一个正确的状态;
+            //     if(stepObj.status == undefined){
+            //         stepObj.status = "success";
+            //     }
+            // }
 
             that.forceUpdate();
+
+            that.saveData();
         }
 
         // useBeforeunload(()=>{
@@ -70,17 +78,22 @@ export default class Problem extends Component {
         // });
 
         /*
-        * 页面关闭时保存data数据
+        * 页面关闭时保存data数据, 会导致Cookie删除失败;
         */
-        window.onbeforeunload = function(){            
-            localStorage.setItem("_DATA_", JSON.stringify(Data));
-        }
-
+        // window.onbeforeunload = function(){            
+        //     localStorage.setItem("_DATA_", JSON.stringify(Data));
+        // }
+    }
+    saveData(){
+        localStorage.setItem("_DATA_", JSON.stringify(Data));
     }
     getStep(){
         var { id } = this.state;
         var stepObj = Data["steps"][id - 1];
         return stepObj;
+    }
+    scrollTop(yAxis){
+        document.querySelector(".content-right").scrollTop = yAxis;
     }    
     render() {
         var stepObj = this.getStep();
@@ -91,34 +104,47 @@ export default class Problem extends Component {
                 }} /> */}
                 <Header data={this.state.HEADER}/>
                 {/* 整体布局 */}
-                <div class="content">                
-                    <div class="content-left">
+                <div className="content">                
+                    <div className="content-left">
                         {/* 文档显示 */}
                         <MarkDown html={typeof stepObj == "object" ? stepObj.markdown : ""} />
                     </div>
-                    <div class="content-right">
+                    <div className="content-right">
                         <Edit codes={typeof stepObj == "object" ? stepObj.codes : "no code"} onBlur={(content) => {
                             stepObj.codes = content;
                         }} />
                         <p className="clearfix">
-                            <button className="btn" style={{ "float": "left", "margin-top": "15px", "margin-left": "0px",}} onClick={(e) => {
+                            <button className="btn" style={{ "float": "left", "marginTop": "15px", "marginLeft": "0px"}} onClick={(e) => {
                                 
-                                //清空测试用例;                      
+                                this.saveData();
+
+                                //清空测试用例;
+                                delete stepObj.status;
+                                
                                 this.state.UnitTest = [];
                                 this.state.UnitTestStatus = "run";
-                                delete stepObj.status;
-
                                 this.forceUpdate();
-
+                                
+                                //改变滚动条位置
+                                this.scrollTop(window.innerHeight + 500);
+                                                                                                
                                 var index = 0;
-                                // 给每个用例增加延迟效果                                
-                                this.handle = setInterval(()=>{
+                                // 给每个用例增加延迟效果                                                                
+
+                                // 第一个版本只测试第一个用例;
+                                // this.handle = setInterval(()=>{                                        
+                                
+                                setTimeout(()=>{
+                                    
                                     var obj = stepObj.cases[index];
                                     this.MyWorker.postMessage([index, stepObj.codes, obj.fn, obj.value]);
-                                    if(++index >= stepObj.cases.length){
-                                        clearInterval(this.handle);
-                                    }
+                                    
+                                    // if(++index >= stepObj.cases.length){
+                                        //     clearInterval(this.handle);
+                                        // }
+                                        
                                 }, 2000);
+                                
 
                                 // stepObj.cases.map((obj, index) => {
                                 //     console.log(obj, index);

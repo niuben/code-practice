@@ -2,6 +2,7 @@
 *  公共样式
 */ 
 /* 单元测试 */
+
 .successStatus {
     color: #1ba94c;
     font-size: 26px;
@@ -10,7 +11,10 @@
     color: #d11534;
     font-size: 26px;
 }
-
+.showStatus {
+    padding: 40px 0px;
+    font-size: 26px;
+}
 
 
 body {
@@ -48,7 +52,8 @@ body {
 }
 
 /* */
-.btn {    
+.btn {
+    cursor: pointer;    
     width: 100px;
     height: 50px;    
 } 

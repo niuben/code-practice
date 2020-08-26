@@ -11,24 +11,33 @@ import "./index.scss";
 
 export default function UnitTest(props){
 
-    return <div className="markdown markdown-body">
-        <h2 className={props.status == "success" ? "successStatus" : ""}>
-            {
-                props.status == "run" ? "case" + (props.data.length + 1) + "正在执行...." : ""
-            }
-        </h2>
+    return <React.Fragment> 
+         {
+            props.status != "end" ? 
+            <h2 className="showStatus">
+                {
+                    props.status == "upload" ? "代码上传中......" : 
+                    props.status == "run" ? "代码执行中......" :
+                    ""
+                }
+            </h2>
+            : null                    
+        }   
+        <div className="markdown markdown-body">
         
-        {
+       
+        {/* 版本一暂时不需要 */}
+        {/* {
             props.data.map((unit, index) => {
                 return <a href={"#case" + ( index + 1)}>case{index + 1}</a>
             })
-        }
+        } */}
 
         <div className="cases">
             {
                 props.data.map((unit, index)=>{
                     return <div className="case" key={index}>
-                        <h3 id={"case" + (index + 1)} className={unit.status == "equal" ? "successStatus" : "errorStatus"}>case{unit.index + 1}: {UNIT_TEST_CONFIG[unit.status]}</h3>                        
+                        <h3 className={unit.status == "equal" ? "successStatus" : "errorStatus"}>{UNIT_TEST_CONFIG[unit.status]}</h3>                        
                         <p><strong>执行: </strong></p>
                         <pre>
                             <code className="language-js">
@@ -54,5 +63,6 @@ export default function UnitTest(props){
             }
         </div>
     </div>
+    </React.Fragment>
 }
 

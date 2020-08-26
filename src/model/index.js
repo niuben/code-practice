@@ -10,14 +10,13 @@ function getData(){
         return JSON.parse(data);
     }
 
-
     return {
         title: "React Render实现",
         steps: [{
             id: 1,
             title: "createTextElement",
             // status: "success",
-            markdown: require("./md/createTextNode.md"),
+            markdown: require("./md/createTextElement.md"),
             codes: `
 /*
 * 创建createTextElement方法
@@ -25,37 +24,20 @@ function getData(){
 * @props: 标签属性;
 * @children: 子标签;
 */ 
-function createTextElement(type, props, children){
+function createTextElement(text){
     /* 填写代码 */ 
     return {
-        obj: 1
+        
     }
 }
 `,
             cases: [{
-                fn: `createTextElement("hi", null, "hi react!")`,
+                fn: 'createTextElement("hi react!")',
                 value: {
-                    type: "hi",
+                    type: "TEXT_ELEMENT",
                     props: {
-                        children: [{
-                            type: "TEXT",
-                            props: {
-                                nodeValue: "hi react"
-                            }
-                        }]
-                    }
-                }
-            }, {
-                fn: `createTextElement("hi", null, "hi react!")`,
-                value: {
-                    type: "hi",
-                    props: {
-                        children: [{
-                            type: "TEXT",
-                            props: {
-                                nodeValue: "hi react"
-                            }
-                        }]
+                        nodeValue: "hi react!",
+                        children:[]
                     }
                 }
             }]

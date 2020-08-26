@@ -26,7 +26,7 @@ export default class Home extends Component {
         return <div>
             <Header data={this.state.HEADER} path="home" />
             {/* 整体布局 */}
-            <div class="home">                
+            <div className="home">                
                 <List data={Data.steps} onChange={(index) => {
                     this.setState({
                         activeIndex: index
