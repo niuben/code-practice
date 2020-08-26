@@ -10,7 +10,6 @@ onmessage = function(e){
     var correctValue = e.data[3];
         
     // console.log("code", code, "fn", fn);
-
     var getStatus = createStatus(index, fn, correctValue);
     
     // 执行函数
