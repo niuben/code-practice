@@ -13,9 +13,8 @@ function getData () {
     title: 'React Render实现',
     steps: [{
       id: 1,
-      title: 'createTextElement',
-      status: "success",
-      markdown: require('./md/createTextElement.md'),
+      title: 'createTextElement',      
+      markdown: require('./md/createTextElement.md'),      
       codes: `/*
 * 创建createTextElement方法
 * @type: 文本内容
@@ -40,8 +39,7 @@ function createTextElement(text){
       }]
     }, {
       id: 2,
-      title: 'createElement',
-      status: "success",
+      title: 'createElement',      
       markdown: require('./md/createElement.md'),
       codes: `/*
 * 创建createTextElement方法
