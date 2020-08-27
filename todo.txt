@@ -35,7 +35,21 @@
         2. 再展示Case结果（滚动条再次向下);
         3. 代码提示文案消失
     
-5. 增加HTML执行功能
+5. 增加HTML执行环境
+    5.1 如何使用独立的开发环境？
+        * 使用JSDOM来模拟环境;
+        * 使用iframe方式来模拟(确定);
+    5.2 计划(1m) 13:24 
+        * 新建一个HTML文件（以这个文件作为运行环境）保证可以运行(1m);
+        * index.html postmessage时runner.html可以接住和返回;（5M)
+        * index.html将代码传递给runner.html(1m);
+        * runner.html运行完后返回值(1m);
+        * 加入isEqual方法;
+            * 需要配置webpack支持多入口打包(长远来看，这个功能时必须要做的)
+            * 
+
+
 6. 样式问题
     6.1 编辑器和Markdown字体大小保持一致;
     6.2 
+7. 

@@ -1,17 +1,17 @@
 import isEqual from "is-equal";
 import jsdom  from "jsdom";
 
-const { JSDOM } = jsdom;
-
-const dom = new JSDOM(`<!DOCTYPE html><div id="root"></div>`);
-var document = dom.window.document;
-
 
 onmessage = function(e){    
-     
     
-    console.log("JSDOM", document);
+    debugger;
+    const { JSDOM } = jsdom;
 
+    const dom = new JSDOM(`<div id="root"></div>`);
+    const document = dom.window.document;
+
+    
+    // console.log("JSDOM", document);
     /*
     * 执行每个单元测试。当index等于0时,先运行code方式
     */ 

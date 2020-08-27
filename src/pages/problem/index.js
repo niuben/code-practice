@@ -9,7 +9,7 @@ import MarkDown from "../../component/markdown/index";
 import Edit from "../../component/edit/index";
 import UnitTest from "../../component/unittest/index";
 
-import Worker from "../../model/run.worker.js";
+// import Worker from "../../model/run.worker.js";
 
 // import * as serviceWorker from './serviceWorker';
 import { HEADER, HEADER_CONTEXT, Data } from "../../model/index";
@@ -37,10 +37,13 @@ export default class Problem extends Component {
         /*
         * 创建一个Worker对象
         */
-        this.MyWorker = new Worker();
+
+        // 改用iframe方式进行代码运行,因为有些代码涉及到DOM操作;
+        // this.MyWorker = new Worker();
+        // this.MyWorker.onmessage = function (e) {
+        
         var that = this;
-        this.MyWorker.onmessage = function (e) {
-            
+        window.onmessage = function(e){
             that.state.UnitTest.push(e.data);           
 
             var stepObj = that.getStep();            
@@ -116,8 +119,10 @@ export default class Problem extends Component {
                         <p className="clearfix">
                             <button className={this.state.UnitTestStatus != "run" ? "btn" : "btn btn-disable"} style={{ "float": "right", "marginTop": "15px", "marginLeft": "0px"}} onClick={(e) => {
                                 
+                                // var runner = document.getElementById("runner");
+                                
+                                
                                 if(this.state.UnitTestStatus == "run") return false;
-
                                 this.saveData();
 
                                 //清空测试用例;
@@ -139,8 +144,10 @@ export default class Problem extends Component {
                                 setTimeout(()=>{
                                     
                                     var obj = stepObj.cases[index];
-                                    this.MyWorker.postMessage([index, stepObj.codes, obj.fn, obj.value]);
-                                    
+                                    // this.MyWorker.postMessage([index, stepObj.codes, obj.fn, obj.value]);                                    
+                                    window.frames[0].postMessage([index, stepObj.codes, obj.fn, obj.value, obj.title], "*");
+
+
                                     // if(++index >= stepObj.cases.length){
                                         //     clearInterval(this.handle);
                                         // }                                        
@@ -158,9 +165,7 @@ export default class Problem extends Component {
                             </button>
                         </p>
                         <UnitTest status={this.state.UnitTestStatus}  data={this.state.UnitTest} />
-                        <div id="test">
-                            
-                        </div>
+                        <iframe id="runner"  src="./runner.html" style={{"display": "none"}}></iframe>
                     </div>                
                 </div>
             </React.Fragment>)        

@@ -36,12 +36,15 @@ export default function UnitTest(props){
         <div className="cases">
             {
                 props.data.map((unit, index)=>{
+                    
+                    console.log("unit", unit, "index", index);
+
                     return <div className="case" key={index}>
-                        <h3 className={unit.status == "equal" ? "successStatus" : "errorStatus"}>{UNIT_TEST_CONFIG[unit.status]}</h3>                        
+                        <h3 className={unit.status == "equal" ? "successStatus" : "errorStatus"}>{UNIT_TEST_CONFIG[unit.status]}</h3>
                         <p><strong>执行: </strong></p>
                         <pre>
                             <code className="language-js">
-                                {unit.fn}
+                                {unit.title}
                             </code>
                         </pre>
 

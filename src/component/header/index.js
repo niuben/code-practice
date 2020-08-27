@@ -6,7 +6,7 @@ export default function Header(props){
 
   return <div className="header">    
     <div className="nav shadow">
-      <h1>React源码学习-Fiber Tree 
+      <h1>React Render实现 
         {
           props.path == "home" ? null : <button className="btn btn-small" style={{marginLeft: "20px" }} onClick={()=>{
             window.location.href = "/";

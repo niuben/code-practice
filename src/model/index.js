@@ -14,7 +14,7 @@ function getData () {
     steps: [{
       id: 1,
       title: 'createTextElement',
-      // status: "success",
+      status: "success",
       markdown: require('./md/createTextElement.md'),
       codes: `/*
 * 创建createTextElement方法
@@ -28,6 +28,7 @@ function createTextElement(text){
 }
 `,
       cases: [{
+        title: 'createTextElement("hi react!")',
         fn: 'createTextElement("hi react!")',
         value: {
           type: 'TEXT_ELEMENT',
@@ -40,6 +41,7 @@ function createTextElement(text){
     }, {
       id: 2,
       title: 'createElement',
+      status: "success",
       markdown: require('./md/createElement.md'),
       codes: `/*
 * 创建createTextElement方法
@@ -66,6 +68,7 @@ function createElement(type, props, ...children){
 }            
 `,
       cases: [{
+        title: 'createElement("hi", null, "hi react!")',
         fn: 'createElement("hi", null, "hi react!")',
         value: {
           'type': 'hi',
@@ -90,9 +93,7 @@ function createElement(type, props, ...children){
 * 创建createTextElement方法
 * @type: 文本内容
 */             
-function createTextElement(text){
-
-    /* 填写代码 */ 
+function createTextElement(text){    
     return {
         type: "TEXT_ELEMENT",
         props: {
@@ -108,8 +109,7 @@ function createTextElement(text){
 * @props: 标签属性
 * @children: 子标签
 */ 
-function createElement(type, props, ...children){
-    /* 填写代码 */
+function createElement(type, props, ...children){    
     return {
         type: type,
         props: {
@@ -134,8 +134,10 @@ function render(element, container){
 }
     `,
       cases: [{
-        fn: 'render(createElement("hi", null, "hi react!"), dom.window.document.getElementByID("root"))',
-        validation: function () {}
+        title: `var element = "<h1>hi react!</h1>";
+render(element, document.getElementById("root"))`,
+        fn: 'var test = function(){ document.getElementById("root").innerHTML=""; render(createElement("h1", null, "hi react!"), document.getElementById("root")); return document.getElementById("root").innerHTML;}; test();',        
+        value: "<h1>hi react!</h1>"
       }]
 
     }]
