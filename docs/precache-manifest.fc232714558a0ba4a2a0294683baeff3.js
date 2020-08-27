@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "be4e959147e4f41bd84fdb1d46d234b1",
+    "revision": "0a5872877466564cabdbf4d8f62ca526",
     "url": "https://niuben.github.io/code-practice/index.html"
   },
   {
-    "revision": "68d136aab0736bf72f8f",
+    "revision": "25ff35f68fdfa0add0de",
     "url": "https://niuben.github.io/code-practice/static/css/main.974cd534.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://niuben.github.io/code-practice/static/js/2.06a7cbca.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "68d136aab0736bf72f8f",
-    "url": "https://niuben.github.io/code-practice/static/js/main.7672586b.chunk.js"
+    "revision": "25ff35f68fdfa0add0de",
+    "url": "https://niuben.github.io/code-practice/static/js/main.912236e8.chunk.js"
   },
   {
     "revision": "a973f6377f78d87893e8",

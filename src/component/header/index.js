@@ -9,7 +9,7 @@ export default function Header(props){
       <h1>React Render实现 
         {
           props.path == "home" ? null : <button className="btn btn-small" style={{marginLeft: "20px" }} onClick={()=>{
-            window.location.href = "/";
+            window.location.href = "#/";
           }}>返回列表</button> 
         }
       </h1>      

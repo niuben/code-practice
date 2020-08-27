@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://niuben.github.io/code-practice/precache-manifest.ade14d1d644f9f3d90a143a6bd1a4122.js"
+  "https://niuben.github.io/code-practice/precache-manifest.fc232714558a0ba4a2a0294683baeff3.js"
 );
 
 self.addEventListener('message', (event) => {
