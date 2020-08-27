@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.974cd534.chunk.css",
-    "main.js": "/static/js/main.7672586b.chunk.js",
-    "main.js.map": "/static/js/main.7672586b.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.a415ad75.js",
-    "runtime-main.js.map": "/static/js/runtime-main.a415ad75.js.map",
-    "static/js/2.06a7cbca.chunk.js": "/static/js/2.06a7cbca.chunk.js",
-    "static/js/2.06a7cbca.chunk.js.map": "/static/js/2.06a7cbca.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.c4f26b7c1c7e0ce76202a29ba05631fd.js": "/precache-manifest.c4f26b7c1c7e0ce76202a29ba05631fd.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.974cd534.chunk.css.map": "/static/css/main.974cd534.chunk.css.map",
-    "static/js/2.06a7cbca.chunk.js.LICENSE.txt": "/static/js/2.06a7cbca.chunk.js.LICENSE.txt"
+    "main.css": "https://niuben.github.io/code-practice/static/css/main.974cd534.chunk.css",
+    "main.js": "https://niuben.github.io/code-practice/static/js/main.7672586b.chunk.js",
+    "main.js.map": "https://niuben.github.io/code-practice/static/js/main.7672586b.chunk.js.map",
+    "runtime-main.js": "https://niuben.github.io/code-practice/static/js/runtime-main.15d667dc.js",
+    "runtime-main.js.map": "https://niuben.github.io/code-practice/static/js/runtime-main.15d667dc.js.map",
+    "static/js/2.06a7cbca.chunk.js": "https://niuben.github.io/code-practice/static/js/2.06a7cbca.chunk.js",
+    "static/js/2.06a7cbca.chunk.js.map": "https://niuben.github.io/code-practice/static/js/2.06a7cbca.chunk.js.map",
+    "index.html": "https://niuben.github.io/code-practice/index.html",
+    "precache-manifest.ade14d1d644f9f3d90a143a6bd1a4122.js": "https://niuben.github.io/code-practice/precache-manifest.ade14d1d644f9f3d90a143a6bd1a4122.js",
+    "service-worker.js": "https://niuben.github.io/code-practice/service-worker.js",
+    "static/css/main.974cd534.chunk.css.map": "https://niuben.github.io/code-practice/static/css/main.974cd534.chunk.css.map",
+    "static/js/2.06a7cbca.chunk.js.LICENSE.txt": "https://niuben.github.io/code-practice/static/js/2.06a7cbca.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.a415ad75.js",
+    "static/js/runtime-main.15d667dc.js",
     "static/js/2.06a7cbca.chunk.js",
     "static/css/main.974cd534.chunk.css",
     "static/js/main.7672586b.chunk.js"
