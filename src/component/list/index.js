@@ -28,7 +28,7 @@ export default function List(props){
                     <span className="title">{data.title}</span>
                     <button className={isPrevSuccess(props.data, index) ? "btn btn-small" : 'btn btn-small btn-disable'} onClick={()=>{
                         if(isPrevSuccess(props.data, index) == true){
-                            window.location.href = "/problem?id=" + data.id;
+                            window.location.href = "#/problem?id=" + data.id;
                         }
                     }}>{
                         data.status != "lock" ? "练习" : "未解锁"

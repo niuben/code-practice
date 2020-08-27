@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import {get as getUrl} from "pure-funs/lib/url";
+import {get as getUrl} from "../../util/url";
 import {set as setCookie, get as getCookie} from "pure-funs/lib/cookie";
 
 
